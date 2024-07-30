@@ -10,27 +10,30 @@ export default {
     ],
 
     theme: {
-        screens: {
-            'mobile': '321px',
-            'mobile-lg': '376px',
-            'tablet': '426px',
-            'laptop': '769px',
-            'laptop-l': '1025px',
-            '4k': '1441px'
-        },
         extend: {
-            colors: {
-                'battleship-gray': '#7F806Eff',
-                'school-bus-yellow': '#FFD800ff',
-                'raisin-black': '#25242Dff',
-                'night': '#121212ff',
-                'davys-gray': '#494853ff',
+            keyframes: {
+                'slide-left': {
+                    '0%': {
+                        transform: 'translateX(100%)',
+                    },
+                    '100%': {
+                        transform: 'translateX(0%)',
+                    }
+                },
+                'slide-right': {
+                    '0%': {
+                        transform: 'translateX(-100%)',
+                    },
+                    '100%': {
+                        transform: 'translateX(0%)',
+                    }
+                }
             },
-            boxShadow: {
-                'bottom-right': '7px 7px 25px rgba(0, 0, 0, 0.25)',
+            animation: {
+                'slide-left': 'slide-left 1s ease-out',
+                'slide-right': 'slide-right 1s ease-out',
             }
-        },
+        }
     },
-
     plugins: [forms],
 };
