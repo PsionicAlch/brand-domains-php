@@ -29,19 +29,19 @@ const validateKeywordTwoWordsMax = (keyword: string): boolean => {
     return keywordList.length <= 2;
 };
 
-const validateDomainIsValid = (domain: string): boolean => {
+const validateExtensionIsValid = (domain: string): boolean => {
     return validDomainExtensions.includes(domain);
 };
 
-const validateDomainStartsWithFullstop = (domain: string): boolean => {
+const validateExtensionStartsWithFullStop = (domain: string): boolean => {
     return domain[0] === '.';
 }
 
 export default function Index() {
     const [keywords, setKeywords] = useState<string>('');
     const [keywordsErrors, setKeywordsErrors] = useState<string[]>([]);
-    const [domains, setDomains] = useState<string>('');
-    const [domainsErrors, setDomainsErrors] = useState<string[]>([]);
+    const [extensions, setDomains] = useState<string>('');
+    const [extensionsErrors, setDomainsErrors] = useState<string[]>([]);
     const [description, setDescription] = useState<string>('');
     const [descriptionErrors, setDescriptionErrors] = useState<string[]>([]);
     const [disabled, setDisabled] = useState<boolean>(false);
@@ -55,12 +55,30 @@ export default function Index() {
             setLoading(true);
 
             try {
-                const response = await axios.post(route('generate.post'), { keywords, description });
+                const response = await axios.post(route('generate.post'), { keywords, extensions, description });
 
                 console.log(response);
             } catch (error) {
-                console.error(error);
+                if (axios.isAxiosError(error) && error.response) {
+                    const errorData = error.response.data.errors;
+
+                    if (errorData && errorData.keywords) {
+                        setKeywordsErrors(errorData.keywords);
+                    }
+
+                    if (errorData && errorData.extensions) {
+                        setDomainsErrors(errorData.extensions);
+                    }
+
+                    if (errorData && errorData.description) {
+                        setDescriptionErrors(errorData.description);
+                    }
+                } else {
+                    alert('An unexpected error has occurred.');
+                }
             }
+
+            setLoading(false);
         }
     };
 
@@ -88,28 +106,28 @@ export default function Index() {
         }
     }, [keywords]);
 
-    // Check domains for any errors.
+    // Check extensions for any errors.
     useEffect(() => {
         setDomainsErrors([]);
 
-        if (domains) {
-            const domainsList = domains
+        if (extensions) {
+            const extensionsList = extensions
                 .split(',')
                 .map(domain => domain.trim())
                 .filter(domain => domain);
 
-            for (let domain of domainsList) {
-                if (!validateDomainStartsWithFullstop(domain)) {
-                    setDomainsErrors(errors => ([`${domain} should start with a "."`, ...errors]));
+            for (let extension of extensionsList) {
+                if (!validateExtensionStartsWithFullStop(extension)) {
+                    setDomainsErrors(errors => ([`${extension} should start with a "."`, ...errors]));
                     continue;
                 }
 
-                if (!validateDomainIsValid(domain)) {
-                    setDomainsErrors(errors => ([`${domain} is not in the list of valid domain extensions!`, ...errors]));
+                if (!validateExtensionIsValid(extension)) {
+                    setDomainsErrors(errors => ([`${extension} is not in the list of valid domain extensions!`, ...errors]));
                 }
             }
         }
-    }, [domains]);
+    }, [extensions]);
 
     // Check description for any errors.
     useEffect(() => {
@@ -130,16 +148,16 @@ export default function Index() {
     useEffect(() => {
         setDisabled(false);
 
-        if (keywordsErrors.length > 0 || domainsErrors.length > 0 || descriptionErrors.length > 0) {
+        if (keywordsErrors.length > 0 || extensionsErrors.length > 0 || descriptionErrors.length > 0) {
             setDisabled(true);
             return;
         }
 
-        if (keywords === '' || domains === '' || description === '') {
+        if (keywords === '' || extensions === '' || description === '') {
             setDisabled(true);
             return;
         }
-    }, [keywords, domains, description]);
+    }, [keywords, extensions, description]);
 
     return (
         <AppLayout>
@@ -162,12 +180,12 @@ export default function Index() {
                                 errors={keywordsErrors}
                             />
                             <TextInput
-                                name="domains"
+                                name="extensions"
                                 label="Comma Seperated Domains"
                                 placeholder=".com, .dev, .net"
-                                value={domains}
+                                value={extensions}
                                 onChange={setDomains}
-                                errors={domainsErrors}
+                                errors={extensionsErrors}
                             />
                             <TextAreaInput
                                 name="description"
