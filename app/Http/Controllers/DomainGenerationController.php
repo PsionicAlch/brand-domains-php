@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Utility\OpenAIUtility;
+use App\Utility\StringUtility;
 use App\Validation\ValidateDescription;
 use App\Validation\ValidateExtensions;
 use App\Validation\ValidateKeywords;
@@ -38,6 +40,14 @@ class DomainGenerationController extends Controller
             return response()->json(['errors' => $errors], 400);
         }
 
-        return response()->json(['domains' => 'Yasss queen!']);
+        $keywords = StringUtility::stringToArray($validator->getData()['keywords']);
+        $extensions = $validator->getData()['extensions'];
+        $description = $validator->getData()['description'];
+
+        $domainNames = (new OpenAIUtility())->generateDomains($keywords, $description);
+
+        // Add to database here!
+
+        return response()->json(['domain_names' => $domainNames]);
     }
 }

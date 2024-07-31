@@ -2,6 +2,7 @@
 
 namespace App\Validation;
 
+use App\Utility\StringUtility;
 use Illuminate\Validation\Validator;
 
 class ValidateExtensions
@@ -9,9 +10,7 @@ class ValidateExtensions
     public function __invoke(Validator $validator): void
     {
         $extensions = $validator->getData()['extensions'];
-        $extensionsArray = collect(explode(",", $extensions))
-            ->map(fn ($extension) => trim($extension))
-            ->filter(fn ($extension) => !empty($extension));
+        $extensionsArray = StringUtility::stringToArray($extensions);
 
         foreach ($extensionsArray as $extension) {
             if (!$this->validateStartsWithFullstop($extension)) {

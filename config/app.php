@@ -131,4 +131,6 @@ return [
         ".world", ".space", ".vip", ".life", ".shop", ".host", ".fun", ".biz", ".icu",
         ".design", ".art"
     ],
+
+    'openai_apikey' => env('OPENAI_APIKEY'),
 ];
