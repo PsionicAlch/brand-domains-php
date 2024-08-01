@@ -47,6 +47,10 @@ class DomainGenerationController extends Controller
 
         $domainNames = (new OpenAIUtility())->generateDomains($keywords, $description);
 
+        if (empty($domainNames)) {
+            return response()->json(['errors' => ['domains' => 'Failed to generate domain names.']], 400);
+        }
+
         // Add to database here!
 
         return response()->json(['domains' => $domainNames]);
