@@ -10,9 +10,9 @@ type TextInputProps = {
 export default function TextInput({ name, label, placeholder = "", value, onChange, errors }: TextInputProps) {
     let classes;
     if (errors.length > 0 && value !== '') {
-        classes = 'caret-red-400 border-red-200 focus:!border-red-400 text-red-400 shadow-red-400';
+        classes = 'caret-red-400 border-red-200 focus:!border-red-400 text-red-400';
     } else if (errors.length <= 0 && value !== '') {
-        classes = 'caret-emerald-500 border-emerald-200 focus:!border-emerald-400 text-emerald-500 shadow-emerald-400';
+        classes = 'caret-emerald-500 border-emerald-200 focus:!border-emerald-400 text-emerald-500';
     }else {
         classes = 'caret-neutral-400 border-neutral-200 focus:!border-neutral-400';
     }

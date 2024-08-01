@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
+use Iodev\Whois\Factory;
 
 class DomainGenerationController extends Controller
 {
@@ -41,13 +42,24 @@ class DomainGenerationController extends Controller
         }
 
         $keywords = StringUtility::stringToArray($validator->getData()['keywords']);
-        $extensions = $validator->getData()['extensions'];
+        $extensions = StringUtility::stringToArray($validator->getData()['extensions']);
         $description = $validator->getData()['description'];
 
         $domainNames = (new OpenAIUtility())->generateDomains($keywords, $description);
 
         // Add to database here!
 
-        return response()->json(['domain_names' => $domainNames]);
+        return response()->json(['domains' => $domainNames]);
+    }
+
+    public function checkDomain(Request $request) : JsonResponse
+    {
+        $validated = $request->validate([
+            'domain' => 'required|string|max:50',
+        ]);
+
+        $whois = Factory::get()->createWhois();
+
+        return response()->json(['available' => $whois->isDomainAvailable($validated['domain'])]);
     }
 }

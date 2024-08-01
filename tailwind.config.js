@@ -27,7 +27,7 @@ export default {
                     '100%': {
                         transform: 'translateX(0%)',
                     }
-                }
+                },
             },
             animation: {
                 'slide-left': 'slide-left 1s ease-out',

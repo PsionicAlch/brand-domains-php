@@ -28,6 +28,8 @@ class OpenAIUtility
             ]
         ]);
 
+        dump($result->choices);
+
         return json_decode($result->choices[0]->message->content, true)['domain_names'];
     }
 }
