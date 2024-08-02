@@ -12,10 +12,8 @@ export default function NavBar() {
                 </div>
 
                 <ul className="flex flex-row gap-4 text-neutral-500">
-                    <li className="hover:text-neutral-800"><a href={route('generate.index')}>Generate</a></li>
-                    <li className="hover:text-neutral-800"><a href="#">History</a></li>
-                    <li className="hover:text-neutral-800"><a href="#">Settings</a></li>
-                    <li className="hover:text-neutral-800"><a href="#">Sign Out</a></li>
+                    <li><a href={route('generate.index')} className="hover:text-neutral-800">Generate</a></li>
+                    <li><a href={route('howto')} className="hover:text-neutral-800">How To</a></li>
                 </ul>
             </nav>
         </header>

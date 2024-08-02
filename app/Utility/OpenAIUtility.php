@@ -16,36 +16,8 @@ class OpenAIUtility
         }
     }
 
-    public function generateDomains(array $keywords, string $description): array
+    public function generateDomains(array $keywords, string $description, int $charLength): array
     {
-//        $client = \OpenAI::client($this->apiKey);
-//        $result = $client->chat()->create([
-//            'model' => 'gpt-4o-mini',
-//            'messages' => [
-//                [
-//                    'role' => 'system',
-//                    'content' => 'You are a branding lead, skilled at creating smart and witty, brandable domain names without extensions. Your response must be in valid JSON. Input will be JSON with "keywords" (a list for domain name ideas), "description" (a description of what the user\'s company or idea entails), and "number_of_domains" (number of names to generate). Output JSON with a "domain_names" array of names.'
-//                ],
-//                [
-//                    'role' => 'user',
-//                    'content' => json_encode(['keywords' => $keywords, 'description' => $description, 'number_of_domains' => 25])
-//                ]
-//            ]
-//        ]);
-//
-//        dump($result);
-//
-//
-//
-//        if (count($result->choices) == 0) {
-//            Log::emergency("\n\nFailed to generate domain names!");
-//            Log::emergency($result);
-//            Log::emergency("\n\n");
-//            return [];
-//        }
-//
-//        return json_decode($result->choices[0]->message->content, true)['domain_names'];
-
         try {
             $response = Http::retry(3, 500)
                 ->withToken($this->apiKey)
@@ -58,11 +30,11 @@ class OpenAIUtility
                     'messages' => [
                         [
                             'role' => 'system',
-                            'content' => 'You are a branding lead, skilled at creating smart and witty, brandable domain names without extensions. Your response must be in valid JSON. Input will be JSON with "keywords" (a list for domain name ideas), "description" (a description of what the user\'s company or idea entails), and "number_of_domains" (number of names to generate). Output JSON with a "domain_names" array of names.'
+                            'content' => 'You are a branding lead, skilled at creating smart and witty, brandable domain names without extensions. Your response must be in valid JSON. Input will be JSON with "keywords" (a list for domain name ideas), "description" (a description of what the user\'s company or idea entails), "charLength" (a preferred character length for each domain name) and "number_of_domains" (number of names to generate). Output JSON with a "domain_names" array of names.'
                         ],
                         [
                             'role' => 'user',
-                            'content' => json_encode(['keywords' => $keywords, 'description' => $description, 'number_of_domains' => 25])
+                            'content' => json_encode(['keywords' => $keywords, 'description' => $description, 'charLength' => $charLength, 'number_of_domains' => 25])
                         ]
                     ]
                 ])->throw()->json();
@@ -85,10 +57,9 @@ class OpenAIUtility
                 }
             }
 
-
             throw new \Exception('Malformed response from OpenAI: ' . json_encode($response));
         } catch (ConnectionException|RequestException|\Exception $exception) {
-            Log::emergency("\n\nFailed to generate domains!\n" . $exception->getMessage() . "\n\n");
+            Log::error("Failed to generate domains!\n" . $exception->getMessage());
             return [];
         }
     }

@@ -6,6 +6,11 @@
 
         <title inertia>{{ config('app.name', 'Brand Domains') }}</title>
 
+        {{-- Umami analytics --}}
+        @if(config('app.env') === 'production')
+            <script defer src="https://umami.psionicalch.com/script.js" data-website-id="beee9f07-bb55-4527-ab36-4df9e15ad3a8"></script>
+        @endif
+
         @routes
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
