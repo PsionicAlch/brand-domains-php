@@ -4,8 +4,8 @@ import AppLayout from "@/Layouts/AppLayout";
 export default function HowTo() {
     return (
         <AppLayout>
-            <section className="container mx-auto text-center">
-                <h2 className="text-3xl font-bold mt-28 mb-10">How to generate brandable domain names</h2>
+            <section className="container mx-auto text-center px-10">
+                <h2 className="text-base font-bold mt-5 mb-10 lg:mt-28 md:text-3xl">How to generate brandable domain names</h2>
 
                 <StepsCard
                     title="Step 1"
