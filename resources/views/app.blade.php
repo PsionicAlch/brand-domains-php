@@ -40,6 +40,13 @@
         <meta property="og:url" content="{{ $website }}">
         <meta property="og:type" content="website">
 
+        {{-- Twitter Card Tags for better Twitter integration --}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $title }}">
+        <meta name="twitter:description" content="{{ $description }}">
+        <meta name="twitter:image" content="{{ asset('/images/BrandDomains_og_image.png') }}">
+        <meta name="twitter:site" content="@psionicalch">
+
         {{-- Canonical Link --}}
         <link rel="canonical" href="{{ $website }}">
 
