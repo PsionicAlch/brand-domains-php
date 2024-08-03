@@ -26,7 +26,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="container mx-auto mt-20 grid grid-cols-3 gap-5 text-center px-10">
+            <section className="container mx-auto mt-10 grid grid-cols-1 gap-5 text-center px-10 md:grid-cols-3 md:mt-20">
                 <BenefitsCard title={"Completely Free"}>
                     Brand Domains is completely free to use with zero hidden costs. No sign-up required.
                 </BenefitsCard>
