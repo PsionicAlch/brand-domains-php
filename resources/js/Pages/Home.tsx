@@ -6,22 +6,22 @@ export default function Home() {
         <AppLayout>
             <section
                 id="hero"
-                className="container mx-auto px-10 mt-20 flex flex-col items-center justify-center text-center"
+                className="container mx-auto px-10 mt-10 flex flex-col items-center justify-center text-center md:mt-20"
             >
-                <h1 className="text-7xl font-extrabold mb-5 capitalize">
+                <h1 className="text-3xl font-extrabold mb-5 capitalize md:text-7xl">
                     Find the perfect domain name for your next brand
                 </h1>
 
-                <h2 className="text-2xl text-gray-500 mb-10">
+                <h2 className="text-base text-gray-500 mb-10 md:text-2xl">
                     Use the power of cutting edge A.I. to help surpass your creative block and gain some new
                     inspiration
                 </h2>
 
-                <a href={route('generate.index')} className="capitalize px-4 py-2 bg-black hover:bg-neutral-900 text-white rounded-xl mb-16">
+                <a href={route('generate.index')} className="capitalize px-4 py-2 bg-black hover:bg-neutral-900 text-white rounded-xl mb-8 md:mb-16">
                     Try it now!
                 </a>
 
-                <div className="bg-neutral-200 p-3 rounded-2xl shadow-lg max-w-[60vw]">
+                <div className="bg-neutral-200 p-3 rounded-2xl shadow-lg md:max-w-[60vw]">
                     <img src="/images/brand_domains_example.avif" alt="Picture of Brand Domains in action" className="rounded-xl"/>
                 </div>
             </section>
