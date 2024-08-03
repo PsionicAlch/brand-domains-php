@@ -16,7 +16,7 @@ class OpenAIUtility
         }
     }
 
-    public function generateDomains(array $keywords, string $description, int $charLength): array
+    public function generateDomains(array $keywords, string $description): array
     {
         try {
             $response = Http::retry(3, 500)
@@ -30,11 +30,11 @@ class OpenAIUtility
                     'messages' => [
                         [
                             'role' => 'system',
-                            'content' => 'You are a branding lead, skilled at creating smart and witty, brandable domain names without extensions. Your response must be in valid JSON. Input will be JSON with "keywords" (a list for domain name ideas), "description" (a description of what the user\'s company or idea entails), "charLength" (a preferred character length for each domain name) and "number_of_domains" (number of names to generate). Output JSON with a "domain_names" array of names.'
+                            'content' => 'You are a branding lead, skilled at creating smart, witty, and uniquely creative brandable domain names without the domain extensions. Your response must be in valid JSON. Input will be JSON with "keywords" (a list for domain name ideas), "description" (a description of what the user\'s company or idea entails), and "number_of_domains" (number of names to generate). Output JSON with a "domain_names" array of names.'
                         ],
                         [
                             'role' => 'user',
-                            'content' => json_encode(['keywords' => $keywords, 'description' => $description, 'charLength' => $charLength, 'number_of_domains' => 25])
+                            'content' => json_encode(['keywords' => $keywords, 'description' => $description, 'number_of_domains' => 25])
                         ]
                     ]
                 ])->throw()->json();

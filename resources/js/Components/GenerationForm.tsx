@@ -4,7 +4,6 @@ import TextInput from "@/Components/TextInput";
 import TextAreaInput from "@/Components/TextAreaInput";
 import validDomainExtensions from "@/Data/ValidDomainExtensions";
 import {SplitString} from "@/Utility/StringUtility";
-import NumberInput from "@/Components/NumberInput";
 
 const validateKeywordAllowedCharacters = (keyword: string): boolean => {
     const allowedCharsRegex = /^[a-zA-Z0-9_!?#,."' ]+$/;
@@ -31,7 +30,7 @@ const validateExtensionStartsWithFullStop = (domain: string): boolean => {
 }
 
 type GenerationFormProps = {
-    handleSubmit: (event: FormEvent<HTMLFormElement>, keywords: string, extensions: string, description: string, charLength: number) => void;
+    handleSubmit: (event: FormEvent<HTMLFormElement>, keywords: string, extensions: string, description: string) => void;
     disableSetter: (disabled: boolean) => void;
     loading: boolean;
 };
@@ -43,8 +42,6 @@ export default function GenerationForm({ handleSubmit, disableSetter, loading }:
     const [extensionsErrors, setDomainsErrors] = useState<string[]>([]);
     const [description, setDescription] = useState<string>('');
     const [descriptionErrors, setDescriptionErrors] = useState<string[]>([]);
-    const [charLength, setCharLength] = useState<number>(0);
-    const [charLengthErrors, setCharLengthErrors] = useState<string[]>([]);
     const [disabled, setDisabled] = useState<boolean>(false);
 
     // Check keywords for any errors.
@@ -104,36 +101,24 @@ export default function GenerationForm({ handleSubmit, disableSetter, loading }:
     }, [description]);
 
     useEffect(() => {
-        setCharLengthErrors([]);
-
-        if (charLength < 0) {
-            setCharLengthErrors(errors => ["Domain names can't have a negative length!", ...errors]);
-        }
-
-        if (charLength > 50) {
-            setCharLengthErrors(errors => ["Domain names shouldn't be longer than 50 characters!", ...errors]);
-        }
-    }, [charLength]);
-
-    useEffect(() => {
         setDisabled(false);
         disableSetter(false);
 
-        if (keywordsErrors.length > 0 || extensionsErrors.length > 0 || descriptionErrors.length > 0 || charLengthErrors.length > 0) {
+        if (keywordsErrors.length > 0 || extensionsErrors.length > 0 || descriptionErrors.length > 0) {
             setDisabled(true);
             disableSetter(true);
             return;
         }
 
-        if (keywords === '' || extensions === '' || description === '' || charLength <= 0 || charLength > 50) {
+        if (keywords === '' || extensions === '' || description === '') {
             setDisabled(true);
             disableSetter(true);
             return;
         }
-    }, [keywords, extensions, description, charLength]);
+    }, [keywords, extensions, description]);
 
     return (
-        <form className="flex flex-col gap-5" onSubmit={(e) => handleSubmit(e, keywords, extensions, description, charLength)}>
+        <form className="flex flex-col gap-5" onSubmit={(e) => handleSubmit(e, keywords, extensions, description)}>
             <TextInput
                 name="keywords"
                 label="Comma Seperated Keywords"
@@ -161,17 +146,13 @@ export default function GenerationForm({ handleSubmit, disableSetter, loading }:
                 errors={descriptionErrors}
             />
 
-            <NumberInput
-                name="charLength"
-                label="Prefered Character Length"
-                value={charLength}
-                onChange={setCharLength}
-                errors={charLengthErrors}
-            />
-
             <button
                 className="bg-black text-white py-2 rounded-xl hover:bg-neutral-800 disabled:bg-neutral-500 disabled:cursor-not-allowed"
                 disabled={disabled || loading}
+                data-umami-event="Domain Generate Button"
+                data-umami-event-keywords={keywords}
+                data-umami-event-extensions={extensions}
+                data-umami-event-description={description}
             >
                 {loading ? 'Generating...' : 'Generate'}
             </button>

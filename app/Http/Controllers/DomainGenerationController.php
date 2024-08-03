@@ -32,7 +32,6 @@ class DomainGenerationController extends Controller
             'keywords' => 'required|regex:/^[a-zA-Z0-9_!?#,."\' ]+$/',
             'extensions' => 'required',
             'description' => 'required|max:250|regex:/^[a-zA-Z0-9_!?#,."\' ]+$/',
-            'charLength' => 'required|numeric|min:1|max:50',
         ]);
 
         $validator->after([
@@ -51,15 +50,13 @@ class DomainGenerationController extends Controller
         $keywords = StringUtility::stringToArray($validator->getData()['keywords']);
         $extensions = StringUtility::stringToArray($validator->getData()['extensions']);
         $description = $validator->getData()['description'];
-        $charLength = $validator->getData()['charLength'];
 
-        $domainNames = (new OpenAIUtility())->generateDomains($keywords, $description, $charLength);
+        $domainNames = (new OpenAIUtility())->generateDomains($keywords, $description);
 
         $logData = [
             'keywords' => $keywords,
             'extensions' => $extensions,
             'description' => $description,
-            'charLength' => $charLength,
             'generated_names' => $domainNames
         ];
         Log::info('Domain generated: ' . json_encode($logData));

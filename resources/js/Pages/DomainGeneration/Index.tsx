@@ -14,7 +14,7 @@ export default function Index() {
     const [disabled, setDisabled] = useState<boolean>(false);
     const [generatedDomains, setGeneratedDomains] = useState<string[]>([]);
 
-    const submitHandler = async (event: FormEvent<HTMLFormElement>, keywords: string, extensions: string, description: string, charLength: number) : Promise<void> => {
+    const submitHandler = async (event: FormEvent<HTMLFormElement>, keywords: string, extensions: string, description: string) : Promise<void> => {
         event.preventDefault();
 
         if (!disabled) {
@@ -22,7 +22,7 @@ export default function Index() {
             setGeneratedDomains([]);
 
             try {
-                const response = await axios.post<{ domains: string[] }>(route('generate.post'), { keywords, extensions, description, charLength });
+                const response = await axios.post<{ domains: string[] }>(route('generate.post'), { keywords, extensions, description });
                 const domains: string[] = [];
 
                 for (let domain of response.data.domains) {
@@ -55,7 +55,6 @@ export default function Index() {
                             <li>What keywords are associated with your brand?</li>
                             <li>What should your domain end in?</li>
                             <li>Please describe your brand in 1-2 sentences.</li>
-                            <li>How many characters would you prefer your domain name to have?</li>
                         </ol>
 
                         <GenerationForm handleSubmit={submitHandler} disableSetter={setDisabled} loading={loading} />
