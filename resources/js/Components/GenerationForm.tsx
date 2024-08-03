@@ -147,7 +147,7 @@ export default function GenerationForm({ handleSubmit, disableSetter, loading }:
             />
 
             <button
-                className="bg-black text-white py-2 rounded-xl hover:bg-neutral-800 disabled:bg-neutral-500 disabled:cursor-not-allowed"
+                className="text-xs bg-black text-white py-2 rounded-xl hover:bg-neutral-800 disabled:bg-neutral-500 disabled:cursor-not-allowed md:text-base"
                 disabled={disabled || loading}
                 data-umami-event="Domain Generate Button"
                 data-umami-event-keywords={keywords}

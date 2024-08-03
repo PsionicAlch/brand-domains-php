@@ -43,15 +43,15 @@ export default function Index() {
 
     return (
         <AppLayout>
-            <section className="container mx-auto px-10 h-[80vh] flex flex-row gap-24 mb-10">
+            <section className="container mx-auto px-10 flex flex-col mb-10 gap-10 lg:flex-row lg:h-[80vh] lg:gap-24">
                 <div className="flex-1 flex flex-col justify-center items-center">
                     <div className="w-full">
-                        <h2 className="text-xl font-bold mb-1">Generate Domain Names</h2>
+                        <h2 className="text-base font-bold mb-1 md:text-xl">Generate Domain Names</h2>
 
-                        <p className="text-base text-neutral-500 font-light mb-5">
+                        <p className="text-xs text-neutral-500 font-light mb-5 md:text-base">
                             Answer three short questions to get suggestions that are a great fit for your brand.
                         </p>
-                        <ol className="list-decimal text-base text-neutral-500 font-light mb-5 px-5">
+                        <ol className="list-decimal text-xs text-neutral-500 font-light mb-5 px-5 md:text-base">
                             <li>What keywords are associated with your brand?</li>
                             <li>What should your domain end in?</li>
                             <li>Please describe your brand in 1-2 sentences.</li>
@@ -61,14 +61,14 @@ export default function Index() {
                     </div>
                 </div>
                 {generatedDomains.length > 0 ? (
-                    <div className={`flex-1 space-y-5 px-10 overflow-auto`}>
+                    <div className={`flex-1 space-y-5 overflow-auto px-0 lg:px-10`}>
                         {generatedDomains.map((domain, index: number) => (<DomainContainer key={index}  domain={domain}/>))}
                     </div>
                 ) : (
                     <div
-                        className={`flex-1 flex flex-col justify-center items-center text-center gap-10 border-8 ${loading ? 'animate-pulse border-neutral-300' : 'border-neutral-200'} border-dashed rounded-xl select-none`}>
-                            <GlobeIcon className={`size-32 ${loading ? 'text-neutral-300' : 'text-neutral-200'}`}/>
-                            <h2 className={`text-3xl font-extrabold px-10 ${loading ? 'text-neutral-300' : 'text-neutral-200'}`}>Let's
+                        className={`flex-1 flex flex-col justify-center items-center text-center border-8 ${loading ? 'animate-pulse border-neutral-300' : 'border-neutral-200'} border-dashed rounded-xl select-none p-5 lg:gap-10`}>
+                            <GlobeIcon className={`size-20 ${loading ? 'text-neutral-300' : 'text-neutral-200'} md:size-32`}/>
+                            <h2 className={`text-base font-extrabold px-10 ${loading ? 'text-neutral-300' : 'text-neutral-200'} md:text-3xl`}>Let's
                                 find you the perfect domain for your brand!</h2>
                         </div>
                 )}

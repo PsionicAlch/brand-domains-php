@@ -34,8 +34,8 @@ export default function DomainContainer({ domain }: DomainContainerProps) {
     return (
         <div className={`w-full rounded-lg border border-${color}-200 shadow-md text-${color}-500 text-xs flex flex-row items-center justify-between py-3 px-5`}>
             <div>
-                <h3 className="text-base font-bold mb-2">{domain}</h3>
-                <p>Availability: <b>{available}</b></p>
+                <h3 className="text-sm font-bold mb-2 md:text-base">{domain}</h3>
+                <p className="text-xs md:text-base">Availability: <b>{available}</b></p>
             </div>
             { available === 'Unknown' ? (
                 <button
@@ -43,6 +43,7 @@ export default function DomainContainer({ domain }: DomainContainerProps) {
                     onClick={checkAvailability}
                     data-umami-event="Check Domain Availability"
                     data-umami-event-domain={domain}
+                    className="text-xs md:text-base"
                 >
                     { checking ? 'Checking...' : 'Check Availability'}
                 </button>
@@ -52,6 +53,7 @@ export default function DomainContainer({ domain }: DomainContainerProps) {
                     target="_blank"
                     data-umami-event="Buy Domain"
                     data-umami-event-domain={domain}
+                    className="text-xs md:text-base"
                 >
                     Buy Domain
                 </a>

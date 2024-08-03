@@ -20,13 +20,13 @@ export default function TextAreaInput({ name, label, placeholder = "", value, on
 
     return (
         <div className="flex flex-col gap-2 text-neutral-500 focus-within:text-neutral-800">
-            <label htmlFor={name} className="font-light">{label}</label>
+            <label htmlFor={name} className="font-light text-xs md:text-base">{label}</label>
             <div className="px-3">
                 <textarea
                     name={name}
                     id={name}
                     placeholder={placeholder}
-                    className={`w-full rounded-lg border ${classes} shadow-md focus:ring-0 text-sm placeholder:text-neutral-400`}
+                    className={`w-full rounded-lg border ${classes} shadow-md focus:ring-0 text-xs placeholder:text-neutral-400 md:text-sm`}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     rows={6}
