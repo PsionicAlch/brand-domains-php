@@ -1,7 +1,7 @@
 export default function NavBar() {
     return (
         <header>
-            <nav className="container mx-auto flex flex-row justify-between items-center px-10 py-5">
+            <nav className="container mx-auto flex flex-col gap-3 px-5 md:gap-0 md:flex-row md:justify-between md:items-center mx:px-10 py-5">
                 <div>
                     <h2 className="text-3xl font-bold">
                         <a
