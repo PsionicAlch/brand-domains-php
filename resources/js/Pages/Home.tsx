@@ -8,11 +8,11 @@ export default function Home() {
                 id="hero"
                 className="container mx-auto px-10 mt-10 flex flex-col items-center justify-center text-center md:mt-20"
             >
-                <h1 className="text-3xl font-extrabold mb-5 capitalize md:text-7xl">
+                <h1 className="text-3xl font-extrabold mb-5 capitalize md:text-5xl lg:text-7xl">
                     Find the perfect domain name for your next brand
                 </h1>
 
-                <h2 className="text-base text-gray-500 mb-10 md:text-2xl">
+                <h2 className="text-base text-gray-500 mb-10 md:text-lg lg:text-2xl">
                     Use the power of cutting edge A.I. to help surpass your creative block and gain some new
                     inspiration
                 </h2>
@@ -21,7 +21,7 @@ export default function Home() {
                     Try it now!
                 </a>
 
-                <div className="bg-neutral-200 p-3 rounded-2xl shadow-lg md:max-w-[60vw]">
+                <div className="bg-neutral-200 p-3 rounded-2xl shadow-lg lg:max-w-[60vw]">
                     <img src="/images/brand_domains_example.avif" alt="Picture of Brand Domains in action" className="rounded-xl"/>
                 </div>
             </section>
@@ -42,7 +42,7 @@ export default function Home() {
 
             <section className="container mx-auto mt-20 text-center">
                 <h2 className="text-base font-bold mb-5 md:mb-10 md:text-3xl">As simple as it gets</h2>
-                <div className="px-10 mx-auto space-y-2 md:max-w-[50vw]">
+                <div className="px-10 mx-auto space-y-2 lg:max-w-[50vw]">
                     <p className="hyphens-auto text-justify text-gray-500 text-xs md:text-base">
                         Everything happens on the <a href={route('generate.index')} className="hover:underline text-neutral-950"><b>Generate</b></a> page.
                     </p>
