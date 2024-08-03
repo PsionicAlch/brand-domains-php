@@ -1,8 +1,47 @@
+@php
+    $title = 'Brand Domains by PsionicAlch';
+    $description = 'Brand Domains helps you to find the perfect domain name for your brand using cutting edge A.I. technology.';
+    $website = 'https://branddomains.psionicalch.com';
+    $keywords = implode(', ' ,[
+        'A.I.',
+        'Cutting Edge',
+        'Brand',
+        'Name',
+        'Brand Name',
+        'Branding',
+        'Domain',
+        'Domain Name',
+    ]);
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/svg" href="{{ asset('/images/icon.svg') }}">
+
+        <title>{{ config('app.name') }}</title>
+
+        {{-- Meta Description --}}
+        <meta name="description" content="{{ $description }}">
+
+        {{-- Keywords --}}
+        <meta name="keywords" content="{{ $keywords }}">
+
+        {{-- Author --}}
+        <meta name="author" content="Jean-Jacques Strydom">
+
+        {{-- Open Graph Tags for better social media integration --}}
+        <meta property="og:title" content="{{ $title }}">
+        <meta property="og:description" content="{{ $description }}">
+        <meta property="og:image" content="{{ asset('/assets/images/BrandDomains_og_image.png') }}">
+        <meta property="og:url" content="{{ $website }}">
+        <meta property="og:type" content="website">
+
+        {{-- Canonical Link --}}
+        <link rel="canonical" href="{{ $website }}">
 
         <title inertia>{{ config('app.name', 'Brand Domains') }}</title>
 
