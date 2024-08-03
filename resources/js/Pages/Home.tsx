@@ -54,8 +54,8 @@ export default function Home() {
             </section>
 
             <section className="container mx-auto my-20 text-center">
-                <h2 className="text-3xl font-bold mb-10">Contact Me</h2>
-                <p className="text-gray-500">
+                <h2 className="text-base font-bold mb-5 md:mb-10 md:text-3xl">Contact Me</h2>
+                <p className="text-gray-500 px-10 text-xs md:text-base">
                     For any bugs, questions or feature requests, please message me on{" "}
                     <a href="https://x.com/psionicalch" target="_blank" className="hover:underline text-neutral-950">𝕏</a>
                 </p>
