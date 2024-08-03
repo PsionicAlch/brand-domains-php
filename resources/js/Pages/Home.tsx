@@ -26,7 +26,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="container mx-auto mt-10 grid grid-cols-1 gap-5 text-center px-10 md:grid-cols-3 md:mt-20">
+            <section className="container mx-auto mt-20 grid grid-cols-1 gap-5 text-center px-10 md:grid-cols-3">
                 <BenefitsCard title={"Completely Free"}>
                     Brand Domains is completely free to use with zero hidden costs. No sign-up required.
                 </BenefitsCard>
@@ -41,15 +41,15 @@ export default function Home() {
             </section>
 
             <section className="container mx-auto mt-20 text-center">
-                <h2 className="text-3xl font-bold mb-10">As simple as it gets</h2>
-                <div className="max-w-[50vw] mx-auto space-y-2">
-                    <p className="hyphens-auto text-justify text-gray-500">
-                        Everything happens on the <a href={route('generate.index')} className="hover:underline text-neutral-950">Generate</a> page.
+                <h2 className="text-base font-bold mb-5 md:mb-10 md:text-3xl">As simple as it gets</h2>
+                <div className="px-10 mx-auto space-y-2 md:max-w-[50vw]">
+                    <p className="hyphens-auto text-justify text-gray-500 text-xs md:text-base">
+                        Everything happens on the <a href={route('generate.index')} className="hover:underline text-neutral-950"><b>Generate</b></a> page.
                     </p>
-                    <p className="hyphens-auto text-justify text-gray-500"><b className="text-neutral-950">Step 1:</b> Answer three short questions.</p>
-                    <p className="hyphens-auto text-justify text-gray-500"><b className="text-neutral-950">Step 2:</b> Check the domain suggestions that pop up. If you like them, click Check Availability to see which ones are available. If you don't like them, click Generate again to get a new list.</p>
-                    <p className="hyphens-auto text-justify text-gray-500"><b className="text-neutral-950">Step 3:</b> [Optional] Purchase your favorite domain.</p>
-                    <p className="hyphens-auto text-justify text-gray-500">That's it!</p>
+                    <p className="hyphens-auto text-justify text-gray-500 text-xs md:text-base"><b className="text-neutral-950">Step 1:</b> Answer three short questions.</p>
+                    <p className="hyphens-auto text-justify text-gray-500 text-xs md:text-base"><b className="text-neutral-950">Step 2:</b> Check the domain suggestions that pop up. If you like them, click Check Availability to see which ones are available. If you don't like them, click Generate again to get a new list.</p>
+                    <p className="hyphens-auto text-justify text-gray-500 text-xs md:text-base"><b className="text-neutral-950">Step 3:</b> [Optional] Purchase your favorite domain.</p>
+                    <p className="hyphens-auto text-justify text-gray-500 text-xs md:text-base">That's it!</p>
                 </div>
             </section>
 
