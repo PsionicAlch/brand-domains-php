@@ -24,7 +24,7 @@ export default function HowTo() {
 
                 <StepsCard
                     title="Step 3"
-                    text={`Add the domain extensions that you might want to use for your brand's domain name. The current list of valid domain names includes ${validDomainExtensions.join(', ')}`}
+                    text={`Add the domain extensions that you might want to use for your brand's domain name. The current list of valid domain names includes ${validDomainExtensions.join(', ')}.`}
                     img="/images/step-3.avif"
                     alt="Arrow pointing at domain extensions text input field."
                     id="ValidDomainExtensions"
@@ -46,7 +46,7 @@ export default function HowTo() {
 
                 <StepsCard
                     title="Step 6"
-                    text='A list of domain names has popped up. You will receive 25 recommended domain names per domain extension. You can now scroll through the list of domain names to see if there are any that tickle your fancy'
+                    text='A list of domain names has popped up. You will receive 25 recommended domain names per domain extension. You can now scroll through the list of domain names to see if there are any that tickle your fancy.'
                     img="/images/step-6.avif"
                     alt="Arrow pointing at generated domain names."
                 />
