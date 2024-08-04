@@ -53,7 +53,7 @@ export default function Index() {
                         </p>
                         <ol className="list-decimal text-xs text-neutral-500 font-light mb-5 px-5 md:text-base">
                             <li>What keywords are associated with your brand?</li>
-                            <li>What should your domain end in?</li>
+                            <li>What should your domain end in? (<a href={`${route('howto')}#ValidDomainExtensions`} className="text-neutral-950 hover:underline">List of valid domain extensions</a>)</li>
                             <li>Please describe your brand in 1-2 sentences.</li>
                         </ol>
 

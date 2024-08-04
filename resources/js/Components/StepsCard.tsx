@@ -3,11 +3,12 @@ type StepsCardProps = {
     text: string;
     img: string;
     alt: string;
+    id?: string;
 }
 
-export default function StepsCard({ title, text, img, alt }: StepsCardProps) {
+export default function StepsCard({ title, text, img, alt, id = "" }: StepsCardProps) {
     return (
-        <div className="flex flex-col text-start mb-10 gap-5 lg:gap-10 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col text-start mb-10 gap-5 lg:gap-10 lg:flex-row lg:items-center lg:justify-between" id={id}>
             <div className="flex-1 space-y-2 lg:space-y-5">
                 <h3 className="text-sm font-bold md:text-xl">{title}</h3>
                 <p className="text-gray-500">{text}</p>

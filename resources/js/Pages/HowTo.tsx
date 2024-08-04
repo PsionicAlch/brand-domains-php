@@ -1,5 +1,6 @@
 import StepsCard from "@/Components/StepsCard";
 import AppLayout from "@/Layouts/AppLayout";
+import validDomainExtensions from "@/Data/ValidDomainExtensions";
 
 export default function HowTo() {
     return (
@@ -23,9 +24,10 @@ export default function HowTo() {
 
                 <StepsCard
                     title="Step 3"
-                    text="Add the domain extensions that you might want to use for your brand's domain name"
+                    text={`Add the domain extensions that you might want to use for your brand's domain name. The current list of valid domain names includes ${validDomainExtensions.join(', ')}`}
                     img="/images/step-3.avif"
                     alt="Arrow pointing at domain extensions text input field."
+                    id="ValidDomainExtensions"
                 />
 
                 <StepsCard
