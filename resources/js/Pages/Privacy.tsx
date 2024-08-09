@@ -171,7 +171,11 @@ export default function Privacy() {
                         no specific rights related to personal data that apply.
                         If you have any concerns or questions about the data we
                         collect through analytics, please{" "}
-                        <a href="javascript:void()" className="hover:underline">
+                        <a
+                            href="javascript:void()"
+                            onClick={send_email}
+                            className="hover:underline"
+                        >
                             email
                         </a>{" "}
                         us or message us on{" "}
