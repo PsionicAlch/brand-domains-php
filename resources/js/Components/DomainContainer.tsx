@@ -14,6 +14,8 @@ export default function DomainContainer({ domain }: DomainContainerProps) {
     const [color, setColor] = useState<"neutral" | "red" | "emerald">(
         "neutral"
     );
+    const affiliateLink = "https://namecheap.pxf.io/EKnjJK";
+    const namecheapLink = `https://www.namecheap.com/domains/registration/results/?domain=${domain}`;
 
     const checkAvailability = async () => {
         setChecking(true);
@@ -61,7 +63,9 @@ export default function DomainContainer({ domain }: DomainContainerProps) {
                 </button>
             ) : available === "Available" ? (
                 <a
-                    href={`https://www.namecheap.com/domains/registration/results/?domain=${domain}`}
+                    href={`${affiliateLink}?url=${encodeURIComponent(
+                        namecheapLink
+                    )}`}
                     target="_blank"
                     data-umami-event="Buy Domain"
                     data-umami-event-domain={domain}
